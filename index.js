@@ -71,12 +71,12 @@ const game = document.querySelector('#game-grid')
 
 // duplicating cards
 let gameGrid = cardsArray.concat(cardsArray)
-let count = 0
-let firstGuess = " "
-let secondGuess = " "
-let delay = 1200;
-
 gameGrid.sort(() => 0.5 - Math.random())
+
+let firstGuess = ''
+let secondGuess = ''
+let count = 0
+let previousTarget = null;
 
 gameGrid.forEach (student => {
   const card = document.createElement('div')
@@ -87,41 +87,48 @@ gameGrid.forEach (student => {
   front.classList.add('front')
 
   const back = document.createElement('div')
-  back.classList.add('back')
-  back.style.backgroundImage = `url(${student.img})`
-  // card.style.backgroundImage = `url(${student.img})`
-  game.appendChild(card)
-  card.append(front)
-  card.append(back)
+    back.classList.add('back')
+    back.style.backgroundImage = `url(${student.img})`
+    // card.style.backgroundImage = `url(${student.img})`
+    game.appendChild(card)
+    card.appendChild(front)
+    card.appendChild(back)
 })
 
 
 // add eventListener to cards
 game.addEventListener('click', function(event) {
-  // debugger
   let clicked = event.target
-  if (clicked.className === 'card') {
+  if (clicked.className === 'card' ||
+      clicked === previousTarget ||
+      clicked.parentNode.classList.contains('selected')
+      ) {
+        return
+      }
     if (count < 2){
       count++
-      if (count === 1){
-        firstGuess = clicked.parentNode.dataset.name
-        clicked.parentNode.classList.add('selected')
+      if (count === 1) {
+          firstGuess = clicked.parentNode.dataset.name
+          clicked.parentNode.classList.add('selected')
       } else {
-        secondGuess = clicked.parentNode.dataset.name
-        clicked.parentNode.classList.add('selected')
-      } 
-
-      if (firstGuess && secondGuess){
-        if (firstGuess === secondGuess){
-          setTimeout(match());
-          setTimeout(resetGuesses, delay);
-        } else {
-        setTimeout(resetGuesses, delay);
-        }
+          secondGuess = clicked.parentNode.dataset.name
+          clicked.parentNode.classList.add('selected')
       }
-    }
-  } 
-})
+      if (firstGuess !== '' && secondGuess !== ''){
+          if (firstGuess === secondGuess) {
+            setTimeout(match, delay)
+            setTimeout(resetGuesses, delay)
+            match();
+            resetGuesses();
+          } else {
+             setTimeout(resetGuesses, delay)
+          }
+       }
+       previousTarget = clicked;
+     }
+  });
+
+let delay = 1200;
 
 const match = () => {
   let selected = document.querySelectorAll('.selected')
@@ -133,13 +140,12 @@ const match = () => {
 // skipped let previous null
 
 const resetGuesses = () => {
-  firstGuess = ' '
-  secondGuess = ' '
-  count = 0 
-  
-  let selected = document.querySelectorAll('.selected')
-    selected.forEach(card => {
-      card.classList.remove('selected')
-    })
-}
+  firstGuess = ''
+  secondGuess = ''
+  count = 0
 
+  let selected = document.querySelectorAll('.selected')
+  selected.forEach(card => {
+    card.classList.remove('selected')
+  })
+}
