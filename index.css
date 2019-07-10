@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 20px 0;
-  background-color: pink;
-}
-
 #header {
   text-align: center;
 }
@@ -22,6 +17,17 @@ body {
 .menu-item {
   flex-grow: 0;
 }
+
+#game-h1, #click-count {
+  display: inline;
+  margin: 0;
+}
+
+body {
+  margin: 20px 0;
+  background-color: pink;
+}
+
 
 #game-flex-box {
   display: flex;
