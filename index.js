@@ -1,12 +1,5 @@
 //MENU-BAR DELEGATION //Changing what's on the right panel
 document.addEventListener('DOMContentLoaded', function(){
-  // document.addEventListener('dbclick', function(event){
-  //   debugger
-  //   alert("Double Clicked disabled")
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   }, true
-  // );
   let deleteButton = document.createElement("button")
   const menuBar = document.querySelector('#menu-bar')
   const menuItem = document.querySelector('.menu-item')
@@ -54,12 +47,9 @@ const userButtonMethod = (event) => {
     event.target.innerText = 'Log Out'
   }
 }
-// const mouseHandler = (event) => {
-//   debugger
-// }
-
 
 const userMethod = (event) => {
+  // debugger
   event.preventDefault();
   let username = event.target[0].value
   fetch('http://localhost:3000/users', {
@@ -72,10 +62,11 @@ const userMethod = (event) => {
         username: username
       })
     }).then(response => response.json())
-      .then(event => {loggedIn(event)})
+      .then((event) => {loggedIn(event)})
 }
 
 const loggedIn = (event) => {
+
   let userButton = document.querySelector("#user-button")
       userButton.addEventListener('click', logOut)
       userButton.innerText = "Log Out"
@@ -91,12 +82,16 @@ const loggedIn = (event) => {
 const logOut = (event) => {
   let userButton = document.querySelector("#user-button")
   userButton.innerText = "Log In"
+  const middleDiv = document.querySelector("#rt-panel-middle")
+  const bottomDiv = document.querySelector("#rt-panel-bottom")
+  document.querySelector('#rt-panel-data').dataset.id = ''
+  middleDiv.innerHTML = ''
+  bottomDiv.innerHTML = ''
+
   renderForm()
-  // debugger
 }
 
 const renderStats = () => {
-  // debugger
   let currentUserId = parseInt(document.querySelector('#rt-panel-data').dataset.id)
     fetch(`http://localhost:3000/users/${currentUserId}`)
     .then(response => response.json())
@@ -107,14 +102,11 @@ const renderUserData = (event) => {
   let panelData = document.querySelector('#rt-panel-middle')
       panelData.innerHTML = ' '
   let statDiv = document.createElement("div")
-  // let h1 = document.createElement("h1")
-  // statDiv.append(h1)
-  // h1.innerText = event.username
   let ul = document.createElement("ul")
   let deleteButton = document.createElement("button")
   deleteButton.innerText = "Delete User"
   statDiv.append(ul)
-  // panelData.dataset.id = event.id
+  deleteButton.dataset.id = event.id
   counter = 1
   event.games.map(game => {
     let li = document.createElement("li")
@@ -126,20 +118,13 @@ const renderUserData = (event) => {
   statDiv.addEventListener('click', clickHandler)
 }
 const deleteUser = (event) => {
-  // deleteButton.addEventListener('click', console.log)
-  // debugger
-  let id = parseInt(event.target.parentElement.parentElement.dataset.id)
-
+  let id = parseInt(event.target.dataset.id)
   fetch(`http://localhost:3000/users/${id}`, {
     method: "DELETE"
   })
   .then(res => res.json())
   .then(renderForm)
 }
-//     // .then(response => response.json())
-//     // .then(console.log)
-//   // debugger
-// }
 
 const gameData = (gameJson) => {
   const dataDiv = document.querySelector('#rt-panel-bottom')
@@ -168,27 +153,21 @@ const gameData = (gameJson) => {
 const rules = (event) => {
   const dataDiv = document.querySelector('#rt-panel-bottom')
   dataDiv.innerHTML = ''
-  dataDiv.innerText = "ADD RULES."
+  let h1 = document.createElement("h1")
+  let h3 = document.createElement("h3")
+  h1.innerText = "How To Play"
+  h3.innerHTML = `<p>Try to find the cards that match.</p><p> Points scored based on each move</p><p>(two cards flipped over)</p>`
+  dataDiv.append(h1)
+  dataDiv.append(h3)
 }
 
-// const userMethod = (event) => {
-//   // debugger
-//   event.preventDefault();
-//   let username = event.target[0].value
-//   if (username === if it exists.find
-//
-//     fetch(`http://localhost:3000/users/${id}`,
-//
-//     } else {
-//   fetch(`http://localhost:3000/users`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       "Accept": "application/json"
-//     },
-//     body: JSON.stringify({
-//       name: username
-//     })
-//   }).then(response => response.json())
-//     .then()}
-// }
+
+// let modal = document.getElementById("popup1")
+// function congratulations(){
+//     if (matchedCard.length == 16){
+//         clearInterval(interval);
+//         finalTime = timer.innerHTML;
+//     modal.classList.add("show");
+//     closeModal();
+//       };
+//   }

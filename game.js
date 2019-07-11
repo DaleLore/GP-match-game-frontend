@@ -36,6 +36,33 @@ const cardsArray = [
 
 const game = document.querySelector('#game-grid')
 
+
+const newGame = () => {
+  let counterNum = document.querySelector("#click-count")
+  counterNum.innerHTML = 0
+  game.innerHTML = ""
+  gameGrid.sort(() => 0.5 - Math.random())
+  gameGrid.forEach (student => {
+    const card = document.createElement('div')
+    card.classList.add('card')
+    card.dataset.name = student.name
+
+    const front = document.createElement('div')
+    front.classList.add('front')
+
+    const back = document.createElement('div')
+      back.classList.add('back')
+      back.style.backgroundImage = `url(${student.img})`
+      // card.style.backgroundImage = `url(${student.img})`
+      game.appendChild(card)
+      card.appendChild(front)
+      card.appendChild(back)
+  })
+}
+
+let refreshGame = document.querySelector("#new-game")
+refreshGame.addEventListener("click", newGame)
+
 // duplicating cards
 let gameGrid = cardsArray.concat(cardsArray)
 gameGrid.sort(() => 0.5 - Math.random())
@@ -113,7 +140,8 @@ const match = () => {
   selected.forEach(card => {
     card.classList.add('match')
   })
-  if (document.querySelectorAll('.match').length === 2){
+  if (document.querySelectorAll('.match').length === 16){
+      // modal.classList.add("show");
       gameOver(event)}
 }
 
