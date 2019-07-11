@@ -104,10 +104,13 @@ body {
 
 #right-panel{
   border: 1px black solid;
+  display: flex;
+  flex-direction: column;
   flex-grow: 2;
-  justify-content: center;
-  /* flex-direction: column; */
+  justify-content: flex-start;
 }
+
+
 
 /* #panel-data{
   display: flex;
@@ -118,6 +121,7 @@ body {
 .game-deets {
   display: flex;
   flex-grow: 0;
+  border: 1px black solid;
 }
 
 ul {

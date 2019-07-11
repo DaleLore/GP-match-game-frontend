@@ -68,9 +68,7 @@ game.addEventListener('click', function(event) {
   let clickCount = document.querySelector("#click-count")
   let num = clickCount.innerText
   let int = parseInt(num)
-  int++
-  clickCount.innerText = int
- 
+
 
   let clicked = event.target
   if (clicked.className === 'card' ||
@@ -87,6 +85,9 @@ game.addEventListener('click', function(event) {
       } else {
           secondGuess = clicked.parentNode.dataset.name
           clicked.parentNode.classList.add('selected')
+          int++
+          clickCount.innerText = int
+
       }
       if (firstGuess !== '' && secondGuess !== ''){
           if (firstGuess === secondGuess) {
@@ -112,6 +113,8 @@ const match = () => {
   selected.forEach(card => {
     card.classList.add('match')
   })
+  if (document.querySelectorAll('.match').length === 2){
+      gameOver(event)}
 }
 
 // skipped let previous null
@@ -126,4 +129,20 @@ const resetGuesses = () => {
     card.classList.remove('selected')
   })
 }
-
+const gameOver = (event) => {
+  let userId = parseInt(event.target.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.dataset.id)
+  let userClickCount = parseInt(document.querySelector('#click-count').innerText)
+  debugger
+  fetch(`http://localhost:3000/games`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      user_id: userId,
+      click_total: userClickCount
+    })
+  }).then(response => response.json())
+    .then(renderStats)
+}
