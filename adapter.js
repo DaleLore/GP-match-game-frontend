@@ -51,5 +51,8 @@ const gameOver = (event) => {
       click_total: userClickCount
     })
   }).then(response => response.json())
-    .then(renderStats)
+    .then(function(){
+      renderStats()
+      gamePanel()
+    })
 }
