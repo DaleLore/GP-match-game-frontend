@@ -63,7 +63,8 @@ a:hover {
   transition-property: text;
   transform: scale(1.1);
   cursor: pointer;
-  text-shadow: 1px 1px lightgrey;
+  color: rgb(94, 123, 185);
+  /* text-shadow: 1px 1px lightgrey; */
 }
 
 .menu-item:hover {
@@ -71,6 +72,7 @@ a:hover {
   transform: scale(1.1);
   cursor: pointer;
   text-shadow: 1px 1px lightgrey;
+  color: rgb(94, 123, 185)
 }
 
 button:hover {
