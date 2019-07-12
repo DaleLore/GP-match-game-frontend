@@ -133,7 +133,7 @@ game.addEventListener('click', function(event) {
       }
   });
 
-let delay = 1200;
+let delay = 500;
 
 const match = () => {
   let selected = document.querySelectorAll('.selected')
@@ -142,6 +142,7 @@ const match = () => {
   })
   if (document.querySelectorAll('.match').length === 16){
       // modal.classList.add("show");
+      alert("You WON!")
       gameOver(event)}
 }
 

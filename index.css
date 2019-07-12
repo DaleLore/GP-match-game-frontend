@@ -47,6 +47,21 @@ h2 {
   flex-grow: 0;
 }
 
+.menu-item:hover {
+  transition-property: text;
+  transform: scale(1.1);
+}
+
+button:hover {
+  transition-property: text;
+  transform: scale(1.1);
+}
+
+input:hover {
+  transition-property: text;
+  transform: scale(1.1);
+}
+
 #game-h1, #click-count {
   display: inline;
   margin: 0;
@@ -96,7 +111,6 @@ button {
   justify-content: space-evenly;
 }
 
-
 /* .card {
   display: flex;
   margin: 5px;
@@ -110,7 +124,7 @@ button {
 
 .card {
   position: relative;
-  transition: all 0.4s linear;
+  transition: all 0.1s linear;
   transform-style: preserve-3d;
   margin: 5px;
 }

@@ -5,9 +5,6 @@ document.addEventListener('DOMContentLoaded', function(){
   const menuItem = document.querySelector('.menu-item')
 
   menuBar.addEventListener('click', clickHandler)
-  // menuItem.addEventListener('mouseover', mouseHandler)
-
-// renderForm();
 })
 
 const renderForm = () => {
@@ -30,7 +27,7 @@ const renderForm = () => {
 
 const clickHandler = (event) => {
   if (event.target.id === 'user-button'){
-      userButtonMethod(event);
+    userButtonMethod(event);
   } else if (event.target.id === 'leaderboard'){
     gamePanel(event);
   } else if (event.target.id === 'rules'){
@@ -49,24 +46,12 @@ const userButtonMethod = (event) => {
 }
 
 const userMethod = (event) => {
-  // debugger
   event.preventDefault();
   let username = event.target[0].value
-  fetch('http://localhost:3000/users', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        username: username
-      })
-    }).then(response => response.json())
-      .then((event) => {loggedIn(event)})
+  createUser(event)
 }
 
 const loggedIn = (event) => {
-
   let userButton = document.querySelector("#user-button")
       userButton.addEventListener('click', logOut)
       userButton.innerText = "Log Out"
@@ -76,6 +61,7 @@ const loggedIn = (event) => {
   h1.innerText = `Welcome ${event.username}`
   welcomePanel.append(h1)
   welcomePanel.dataset.id = event.id
+
   renderStats()
 }
 
@@ -89,13 +75,6 @@ const logOut = (event) => {
   bottomDiv.innerHTML = ''
 
   renderForm()
-}
-
-const renderStats = () => {
-  let currentUserId = parseInt(document.querySelector('#rt-panel-data').dataset.id)
-    fetch(`http://localhost:3000/users/${currentUserId}`)
-    .then(response => response.json())
-    .then(event => renderUserData(event))
 }
 
 const renderUserData = (event) => {
@@ -116,14 +95,6 @@ const renderUserData = (event) => {
   statDiv.append(deleteButton)
   panelData.append(statDiv)
   statDiv.addEventListener('click', clickHandler)
-}
-const deleteUser = (event) => {
-  let id = parseInt(event.target.dataset.id)
-  fetch(`http://localhost:3000/users/${id}`, {
-    method: "DELETE"
-  })
-  .then(res => res.json())
-  .then(renderForm)
 }
 
 const gameData = (gameJson) => {
