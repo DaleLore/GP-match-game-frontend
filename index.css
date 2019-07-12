@@ -34,17 +34,36 @@ h2 {
   color: white;
 }
 
-#menu-bar {
+#menu-bar, footer{
   display: flex;
   justify-content: space-around;
   background-color: pink;
-  box-shadow: 2px 2px purple;
+  box-shadow: 2px 2px 2px 2px purple;
   font-family: ‘Open Sans Condensed’, sans-serif;
   color: purple;
 }
 
 .menu-item {
   flex-grow: 0;
+}
+p:hover {
+  transition-property: text;
+  transform: scale(1.1);
+}
+
+a:link {
+  color: purple;
+}
+
+a:visited {
+  color: purple;
+}
+
+a:hover {
+  transition-property: text;
+  transform: scale(1.1);
+  cursor: pointer;
+  text-shadow: 1px 1px lightgrey;
 }
 
 .menu-item:hover {
