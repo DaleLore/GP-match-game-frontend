@@ -137,19 +137,17 @@ const match = () => {
   selected.forEach(card => {
     card.classList.add('match')
   })
-  if (document.querySelectorAll('.match').length === 2){
-      gameOver(event)}
-      // setTimeout(() => {alert("You're Glorious!!")})
-      let modal = document.querySelector(".gameOver")
-      modal.style.display = "block"
-      let refreshBtn = document.querySelector(".closeBtn")
-      refreshBtn.addEventListener('click', function(){
-      newGame()
-      modal.style.display = "none"
-  })
+  if (document.querySelectorAll('.match').length === 16){
+    gameOver(event)
+    let modal = document.querySelector(".gameOver")
+    modal.style.display = "block"
+    let refreshBtn = document.querySelector(".closeBtn")
+    refreshBtn.addEventListener('click', function(){
+    newGame()
+    modal.style.display = "none"
+    })
+  }
 }
-
-// skipped let previous null
 
 const resetGuesses = () => {
   firstGuess = ''
@@ -160,21 +158,4 @@ const resetGuesses = () => {
   selected.forEach(card => {
     card.classList.remove('selected')
   })
-}
-const gameOver = (event) => {
-  let userId = parseInt(event.target.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.dataset.id)
-  let userClickCount = parseInt(document.querySelector('#click-count').innerText)
-  debugger
-  fetch(`http://localhost:3000/games`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify({
-      user_id: userId,
-      click_total: userClickCount
-    })
-  }).then(response => response.json())
-    .then(renderStats)
 }

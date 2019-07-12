@@ -36,3 +36,20 @@ const deleteUser = (event) => {
   }).then(res => res.json())
     .then(logOut)
 }
+
+const gameOver = (event) => {
+  let userId = parseInt(event.target.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.dataset.id)
+  let userClickCount = parseInt(document.querySelector('#click-count').innerText)
+  fetch(`http://localhost:3000/games`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      user_id: userId,
+      click_total: userClickCount
+    })
+  }).then(response => response.json())
+    .then(renderStats)
+}
