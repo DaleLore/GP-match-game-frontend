@@ -50,16 +50,26 @@ h2 {
 .menu-item:hover {
   transition-property: text;
   transform: scale(1.1);
+  cursor: pointer;
+  text-shadow: 1px 1px lightgrey;
 }
 
 button:hover {
   transition-property: text;
-  transform: scale(1.1);
+  transform: scale(1.5);
+  cursor: pointer;
+  text-shadow: 1px 1px lightgrey;
+  box-shadow: 5px 5px grey;
+  border-radius: 5px;
 }
 
 input:hover {
   transition-property: text;
-  transform: scale(1.1);
+  transform: scale(1.5);
+  cursor: pointer;
+  text-shadow: 1px 1px lightgrey;
+  box-shadow: 5px 5px grey;
+  border-radius: 5px;
 }
 
 #game-h1, #click-count {

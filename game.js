@@ -128,9 +128,6 @@ game.addEventListener('click', function(event) {
        }
        previousTarget = clicked;
      }
-      if (document.querySelectorAll(".match").length === 16) {
-        debugger
-      }
   });
 
 let delay = 500;
@@ -140,10 +137,10 @@ const match = () => {
   selected.forEach(card => {
     card.classList.add('match')
   })
-  if (document.querySelectorAll('.match').length === 16){
+  if (document.querySelectorAll('.match').length === 2){
       // modal.classList.add("show");
-      alert("You WON!")
       gameOver(event)}
+      setTimeout(() => {alert("You're Glorious!!")})
 }
 
 // skipped let previous null

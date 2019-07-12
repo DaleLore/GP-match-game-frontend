@@ -106,8 +106,8 @@ const gameData = (gameJson) => {
   scoreTitle.innerText = "Top Scores"
   dataDiv.append(scoreTitle)
   let gameArray = gameJson.sort(function(game1,game2) {
-    if (game1.click_total > game2.click_total) return -1;
-    if (game1.click_total < game2.click_total) return 1;
+    if (game1.click_total > game2.click_total) return 1;
+    if (game1.click_total < game2.click_total) return -1;
   });
 
   gameArray.forEach (game => {
@@ -115,7 +115,7 @@ const gameData = (gameJson) => {
     li.className = "user-li"
     li.dataset = "user-li-" + "${user.id}"
     li.innerText =
-    `${game.user.username} - Points: ${game.click_total}`
+    `${game.user.username} - Moves: ${game.click_total}`
     lbUl.append(li)
   })
   dataDiv.append(lbUl)
@@ -131,14 +131,3 @@ const rules = (event) => {
   dataDiv.append(h1)
   dataDiv.append(h3)
 }
-
-
-// let modal = document.getElementById("popup1")
-// function congratulations(){
-//     if (matchedCard.length == 16){
-//         clearInterval(interval);
-//         finalTime = timer.innerHTML;
-//     modal.classList.add("show");
-//     closeModal();
-//       };
-//   }
