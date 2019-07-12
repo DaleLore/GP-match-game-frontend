@@ -58,8 +58,8 @@ button:hover {
   transition-property: text;
   transform: scale(1.5);
   cursor: pointer;
-  text-shadow: 1px 1px lightgrey;
-  box-shadow: 5px 5px grey;
+  text-shadow: 1px 1px 1px 1px lightgrey;
+  box-shadow: 5px 5px 5px 5px grey;
   border-radius: 5px;
 }
 
@@ -68,7 +68,7 @@ input:hover {
   transform: scale(1.5);
   cursor: pointer;
   text-shadow: 1px 1px lightgrey;
-  box-shadow: 5px 5px grey;
+  box-shadow: 5px 5px 5px 5px grey;
   border-radius: 5px;
 }
 
@@ -119,6 +119,10 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 5px 5px grey;
 }
 
 .card {
