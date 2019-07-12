@@ -138,9 +138,15 @@ const match = () => {
     card.classList.add('match')
   })
   if (document.querySelectorAll('.match').length === 2){
-      // modal.classList.add("show");
       gameOver(event)}
-      setTimeout(() => {alert("You're Glorious!!")})
+      // setTimeout(() => {alert("You're Glorious!!")})
+      let modal = document.querySelector(".gameOver")
+      modal.style.display = "block"
+      let refreshBtn = document.querySelector(".closeBtn")
+      refreshBtn.addEventListener('click', function(){
+      newGame()
+      modal.style.display = "none"
+  })
 }
 
 // skipped let previous null
